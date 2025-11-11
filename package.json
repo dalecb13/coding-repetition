@@ -16,6 +16,10 @@
       {
         "command": "spacedrepetitionforcode.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "spacedrepetitionforcode.getCard",
+        "title": "Get Card"
       }
     ]
   },

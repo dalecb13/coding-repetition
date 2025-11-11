@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { getCardFunction } from './get-card';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -14,12 +15,18 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	const disposable = vscode.commands.registerCommand('spacedrepetitionforcode.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from SpacedRepetitionForCode!');
+        vscode.window.showInformationMessage('Hello World!');
 	});
 
+    const getCard = vscode.commands.registerCommand('spacedrepetitionforcode.getCard', () => {
+        // The code you place here will be executed every time your command is executed
+        // Display a message box to the user
+        getCardFunction();
+        // vscode.window.showInformationMessage('Fetching card!');
+    });
+
 	context.subscriptions.push(disposable);
+    context.subscriptions.push(getCard);
 }
 
 // This method is called when your extension is deactivated
