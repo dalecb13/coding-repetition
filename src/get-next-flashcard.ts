@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import { readFiles, whatFiles } from './read-files';
 import { getCards } from './get-cards-directory';
 
 interface Card {
@@ -14,9 +13,20 @@ const handleFileReadError = (error: Error) => {
 };
 
 export const getNextFlashcardFunction = async () => {
+    /*
+        Show random card
+        1. Load cards from cards directory
+            1. If no cards directory exists, show error message
+            2. If no cards exist in directory, show error message
+        2. Load cards from todays directory
+            1. Create it if it doesn't exist, and show message
+        3. Remove all cards from cards directory that is in todays directory
+        4. Apply algorithm to figure out if a card needs to be displayed and filter out unneeded cards
+        5. Randomly choose
+    */
     console.log('In getCardFunction!');
 
-    // whatFiles();
+    // 1. Load cards
     const cards = await getCards();
     if (cards === undefined) {
         // TODO: implement this
@@ -24,4 +34,7 @@ export const getNextFlashcardFunction = async () => {
     } else {
         console.log('cards', cards);
     }
+
+    // 2. Load cards from today's directory
+
 };
