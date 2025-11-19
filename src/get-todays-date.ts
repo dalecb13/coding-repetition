@@ -1,3 +1,5 @@
+import * as vscode from 'vscode';
+
 export const getTodaysDate = () => {
     let today = new Date();
     const offset = today.getTimezoneOffset();

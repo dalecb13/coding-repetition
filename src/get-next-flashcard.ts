@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import { readFiles, whatFiles } from './read-files';
 
-const CARD_DIRECTORY = "../cards";
-
 interface Card {
     question: string;
     answer: string;
