@@ -14,7 +14,7 @@ const handleFileReadError = (error: Error) => {
     vscode.window.showErrorMessage(error.message);
 };
 
-export const getCardFunction = () => {
+export const getNextFlashcardFunction = () => {
     console.log('In getCardFunction!');
     /*
         1. Parse cards for cards due today based on algorithm

@@ -18,8 +18,8 @@
         "title": "Hello World"
       },
       {
-        "command": "spacedrepetitionforcode.getCard",
-        "title": "Get Card"
+        "command": "spacedrepetitionforcode.getNextFlashcard",
+        "title": "Get Next Flashcard"
       }
     ]
   },
