@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showInformationMessage('Hello World!');
 	});
 
-    const getCard = vscode.commands.registerCommand('spacedrepetitionforcode.getNextFlashcard', () => {
+    const getNextFlashcard = vscode.commands.registerCommand('spacedrepetitionforcode.getNextFlashcard', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
         getNextFlashcardFunction();
@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
 	context.subscriptions.push(disposable);
-    context.subscriptions.push(getCard);
+    context.subscriptions.push(getNextFlashcard);
 }
 
 // This method is called when your extension is deactivated
