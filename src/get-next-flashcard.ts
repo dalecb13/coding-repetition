@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { getCards } from './get-cards-directory';
+import { getTodaysCards } from './get-todays-cards';
 
 interface Card {
     question: string;
@@ -36,5 +37,14 @@ export const getNextFlashcardFunction = async () => {
     }
 
     // 2. Load cards from today's directory
-
+    let todaysCards = await getTodaysCards();
+    if (todaysCards === undefined) {
+        // TODO: implement this
+        // No cards, which is fine
+        todaysCards = [];
+        console.log('todaysCards is empty');
+        return;
+    } else {
+        console.log('todaysCards', todaysCards);
+    }
 };

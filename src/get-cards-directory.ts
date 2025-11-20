@@ -30,7 +30,7 @@ const doesCardsDirectoryExist = () => {
 export const getCards = async () => {
     const cardDirectory: string | undefined = getCardsDirectoryName();
     if (cardDirectory === undefined) {
-        void Window.showErrorMessage('Spaced Code Repetition can only run on a workspace folder.');
+        void Window.showErrorMessage('"cards" directory not found');
     } else {
         const cards = await Workspace.fs.readDirectory(VscodeUri.file(cardDirectory));
         return cards;
