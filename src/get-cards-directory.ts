@@ -1,6 +1,8 @@
 import {
 	workspace as Workspace, window as Window, Uri as VscodeUri
 } from 'vscode';
+import { Card } from './card';
+import { fileToCard } from './transform-card';
 
 const getCardsDirectoryName = () => {
     const folders = Workspace.workspaceFolders;
@@ -27,12 +29,14 @@ const doesCardsDirectoryExist = () => {
     }
 };
 
-export const getCards = async () => {
+export const getCards = async (): Promise<Card[] | undefined> => {
     const cardDirectory: string | undefined = getCardsDirectoryName();
     if (cardDirectory === undefined) {
         void Window.showErrorMessage('"cards" directory not found');
+        return;
     } else {
-        const cards = await Workspace.fs.readDirectory(VscodeUri.file(cardDirectory));
+        const fileCards = await Workspace.fs.readDirectory(VscodeUri.file(cardDirectory));
+        const cards: Card[] = fileCards.map(fileToCard);
         return cards;
     }
 };
