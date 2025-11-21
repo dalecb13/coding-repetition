@@ -1,7 +1,7 @@
 import { FileType } from "vscode";
 import { Card } from "./card";
 
-export const fileToCard = (input: [string, FileType]): Card => {
+export const fileToCard = (input: string): Card => {
     console.log('input', input);
 
     return {

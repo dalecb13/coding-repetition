@@ -3,6 +3,7 @@ import {
 } from 'vscode';
 import { Card } from './card';
 import { fileToCard } from './transform-card';
+import { getFilesFromFolder } from './get-files-from-folder';
 
 const getCardsDirectoryName = () => {
     const folders = Workspace.workspaceFolders;
@@ -30,13 +31,18 @@ const doesCardsDirectoryExist = () => {
 };
 
 export const getCards = async (): Promise<Card[] | undefined> => {
+    if (!Workspace.workspaceFolders) {
+        Window.showInformationMessage('No folder or workspace opened');
+        return;
+    }
+
     const cardDirectory: string | undefined = getCardsDirectoryName();
     if (cardDirectory === undefined) {
         void Window.showErrorMessage('"cards" directory not found');
         return;
-    } else {
-        const fileCards = await Workspace.fs.readDirectory(VscodeUri.file(cardDirectory));
-        const cards: Card[] = fileCards.map(fileToCard);
-        return cards;
     }
+
+    const fileContents = await getFilesFromFolder(VscodeUri.file(cardDirectory));
+    const cards = fileContents?.map(fileToCard);
+    return cards;
 };
