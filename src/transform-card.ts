@@ -1,4 +1,3 @@
-import { FileType } from "vscode";
 import { Card } from "./card";
 
 export const fileToCard = (input: string): Card => {

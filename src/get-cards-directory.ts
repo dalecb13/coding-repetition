@@ -30,19 +30,19 @@ const doesCardsDirectoryExist = () => {
     }
 };
 
-export const getCards = async (): Promise<Card[] | undefined> => {
+export const getCards = async (baseUri: VscodeUri): Promise<Card[] | undefined> => {
     if (!Workspace.workspaceFolders) {
         Window.showInformationMessage('No folder or workspace opened');
         return;
     }
 
-    const cardDirectory: string | undefined = getCardsDirectoryName();
+    const cardDirectory =  VscodeUri.joinPath(baseUri, 'cards');
     if (cardDirectory === undefined) {
         void Window.showErrorMessage('"cards" directory not found');
         return;
     }
 
-    const fileContents = await getFilesFromFolder(VscodeUri.file(cardDirectory));
+    const fileContents = await getFilesFromFolder(cardDirectory);
     const cards = fileContents?.map(fileToCard);
     return cards;
 };

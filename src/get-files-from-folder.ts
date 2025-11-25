@@ -1,9 +1,14 @@
 import * as vscode from 'vscode';
-import { posix } from 'path';
 
 export async function getFilesFromFolder(folder: vscode.Uri): Promise<string[] | undefined> {
+    console.log('getting files from folder', folder);
     if (!vscode.workspace.workspaceFolders) {
         vscode.window.showInformationMessage('No folder or workspace opened');
+        return;
+    }
+
+    if (folder === undefined) {
+        void vscode.window.showErrorMessage('"cards" directory not found');
         return;
     }
 
@@ -12,11 +17,10 @@ export async function getFilesFromFolder(folder: vscode.Uri): Promise<string[] |
     const fileContents = [];
     for (const [name, type] of await vscode.workspace.fs.readDirectory(folder)) {
         if (type === vscode.FileType.File) {
-            const filePath = posix.join(folder.path, name);
-            const folderUri = vscode.workspace.workspaceFolders[0].uri;
-            const fileUri = folderUri.with({ path: posix.join(folderUri.path, name) });
-            const fileContent = await vscode.workspace.fs.readFile(fileUri);
+            const filePath =  vscode.Uri.joinPath(folder, name);
+            const fileContent = await vscode.workspace.fs.readFile(filePath);
             const content = dec.decode(fileContent);
+            console.log('content', content);
             fileContents.push(content);
         }
     }

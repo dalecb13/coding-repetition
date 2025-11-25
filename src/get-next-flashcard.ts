@@ -13,7 +13,7 @@ const handleFileReadError = (error: Error) => {
     vscode.window.showErrorMessage(error.message);
 };
 
-export const getNextFlashcardFunction = async () => {
+export const getNextFlashcardFunction = async (baseUri: vscode.Uri) => {
     /*
         Show random card
         1. Load cards from cards directory
@@ -28,7 +28,7 @@ export const getNextFlashcardFunction = async () => {
     console.log('In getCardFunction!');
 
     // 1. Load cards
-    const cards = await getCards();
+    const cards = await getCards(baseUri);
     if (cards === undefined) {
         // TODO: implement this
         return;
@@ -37,14 +37,14 @@ export const getNextFlashcardFunction = async () => {
     }
 
     // 2. Load cards from today's directory
-    let todaysCards = await getTodaysCards();
-    if (todaysCards === undefined) {
-        // TODO: implement this
-        // No cards, which is fine
-        todaysCards = [];
-        console.log('todaysCards is empty');
-        return;
-    } else {
-        console.log('todaysCards', todaysCards);
-    }
+    // let todaysCards = await getTodaysCards(baseUri);
+    // if (todaysCards === undefined) {
+    //     // TODO: implement this
+    //     // No cards, which is fine
+    //     todaysCards = [];
+    //     console.log('todaysCards is empty');
+    //     return;
+    // } else {
+    //     console.log('todaysCards', todaysCards);
+    // }
 };
