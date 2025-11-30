@@ -1,5 +1,6 @@
 import { RepetitionItem } from "./algorithms/base/repetition-item";
 import { CardListType } from "./deck";
+import { Question } from "./question";
 
 export class Card extends RepetitionItem {
     filename: string;

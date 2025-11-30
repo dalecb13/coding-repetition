@@ -91,7 +91,7 @@ export class QuestionText {
     //      https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
     //      Block identifiers can only consist of letters, numbers, and dashes.
     // If present, then first character is "^"
-    obsidianBlockId: string;
+    obsidianBlockId: string | null;
 
     // Hash of string  (topicPath + actualQuestion)
     // Explicitly excludes the HTML comment with the scheduling info
@@ -102,7 +102,7 @@ export class QuestionText {
         topicPathWithWs: TopicPathWithWs,
         actualQuestion: string,
         textDirection: TextDirection,
-        blockId: string,
+        blockId: string | null,
     ) {
         this.original = original;
         this.topicPathWithWs = topicPathWithWs;
@@ -223,22 +223,27 @@ export class Question {
 
     formatForNote(settings: SRSettings): string {
         let result: string = this.questionText.formatTopicAndQuestion();
-        const blockId: string = this.questionText.obsidianBlockId;
+        const blockId: string | null = this.questionText.obsidianBlockId;
         const hasSchedule: boolean = this.cards.some((card) => card.hasSchedule);
         if (hasSchedule) {
             result = result.trimEnd();
             const scheduleHtml =
                 DataStoreAlgorithm.getInstance().questionFormatScheduleAsHtmlComment(this);
             if (blockId) {
-                if (this.isCardCommentsOnSameLine(settings))
+                if (this.isCardCommentsOnSameLine(settings)) {
                     result += ` ${scheduleHtml} ${blockId}`;
-                else result += ` ${blockId}\n${scheduleHtml}`;
+                }
+                else {
+                    result += ` ${blockId}\n${scheduleHtml}`;
+                }
             } else {
                 result += this.getHtmlCommentSeparator(settings) + scheduleHtml;
             }
         } else {
             // No schedule, so the block ID always comes after the question text, without anything after it
-            if (blockId) result += ` ${blockId}`;
+            if (blockId) {
+                result += ` ${blockId}`;
+            }
         }
         return result;
     }
