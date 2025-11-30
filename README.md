@@ -1,71 +1,13 @@
-# spacedrepetitionforcode README
+# Spaced Repetition for VS Code
 
-This is the README for your extension "spacedrepetitionforcode". After writing up a brief description, we recommend including the following sections.
+Studying for interviews requires deep knowledge about a lot of the essentials. Data structures, algorithms, internals to programming languages, the topics are endless. In addition, interview questions sometimes test you on content not really related to day-to-day job duties. As a result, you end up spending time and money that could have been spent doing something productive instead of spending your valuable time studying for interviews.
 
-## Features
+This VS Code plugin is designed to help you maintain knowledge about the fundamentals of computer science while also helping you prepare for technical interview questions in preparation for jobs at tech companies.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Previously I used the [Spaced Repetition Plugin - GitHub](https://github.com/st3v3nmw/obsidian-spaced-repetition) in [Obsidian](https://obsidian.md/) personal knowledge management, but I got tired of writing code that is not an IDE. Additionally, certain coding questions asked in an interview do not require coding at all. Lastly, while at work, engineers are rarely told to "tell me about a time where you...". Consequently, most spaced repetition apps and plugins do not handle both types of questions well. The ideal app would have native support for all three types of questions (core knowledge, coding, and behavioral) without having to write any code at all. This plugin is designed to handle all three types of questions.
 
-For example if there is an image subfolder under your extension project workspace:
+## How to Use This Plugin
 
-\!\[feature X\]\(images/feature-x.png\)
+This plugin is designed to use spaced repetition to help you learn and retain information faster than if you were to study it by rote memorization of the material. Once you've installed this plugin, simply open VS Code in an empty folder, create a directory called `/flashcards`, and add `.md` files that represent the flashcards on which you want to test yourself.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+When you provide feedback on how well you remembered the answer for the flashcard, the plugin will automatically store that feedback in that flashcard so that it can determine when to show you that flashcard again.
